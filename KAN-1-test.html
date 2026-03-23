@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Sample Page</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #10b981;
+      --danger: #ef4444;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER / NAVBAR ===== */
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    }
+    header .container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    header nav a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    header nav a:hover { color: #fff; }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+      color: #fff;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; opacity: .9; max-width: 600px; margin: 0 auto 2rem; }
+    .btn {
+      display: inline-block;
+      padding: .75rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.2); }
+    .btn-white { background: #fff; color: var(--primary); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+
+    /* ===== SECTIONS ===== */
+    section { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: .5rem;
+      border-bottom: 3px solid var(--primary);
+      display: inline-block;
+    }
+
+    /* ===== CARDS ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+    .card img { width: 100%; height: 180px; object-fit: cover; }
+    .card-body { padding: 1.25rem; }
+    .card-body h3 { margin-bottom: .5rem; }
+    .card-body p { color: var(--text-muted); font-size: .95rem; }
+    .badge {
+      display: inline-block;
+      padding: .2rem .6rem;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 600;
+      margin-top: .75rem;
+    }
+    .badge-success { background: #d1fae5; color: #065f46; }
+    .badge-warning { background: #fef3c7; color: #92400e; }
+    .badge-danger  { background: #fee2e2; color: #991b1b; }
+
+    /* ===== TABLE ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    thead { background: var(--primary); color: #fff; }
+    th, td { padding: .85rem 1.25rem; text-align: left; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:nth-child(even) { background: #f1f5f9; }
+    tbody tr:hover { background: #e0e7ff; }
+
+    /* ===== FORM ===== */
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-width: 600px;
+    }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      margin-bottom: .35rem;
+      font-weight: 600;
+      font-size: .9rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: .65rem .85rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: .95rem;
+      font-family: inherit;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+    }
+    .form-row { display: flex; gap: 1rem; }
+    .form-row .form-group { flex: 1; }
+    .checkbox-group { display: flex; align-items: center; gap: .5rem; }
+    .checkbox-group input { width: auto; }
+
+    /* ===== ACCORDION ===== */
+    details {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: .75rem;
+    }
+    details summary {
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      font-weight: 600;
+      user-select: none;
+    }
+    details[open] summary { border-bottom: 1px solid var(--border); }
+    details .content { padding: 1rem 1.25rem; color: var(--text-muted); }
+
+    /* ===== PROGRESS ===== */
+    .progress-bar {
+      height: 12px;
+      background: #e2e8f0;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: .75rem;
+    }
+    .progress-bar .fill {
+      height: 100%;
+      border-radius: 20px;
+      transition: width .6s ease;
+    }
+    .fill-blue   { background: var(--primary); }
+    .fill-green  { background: var(--success); }
+    .fill-amber  { background: var(--accent); }
+    .fill-red    { background: var(--danger); }
+
+    /* ===== MEDIA ===== */
+    figure {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: inline-block;
+    }
+    figure img { display: block; width: 100%; max-width: 500px; }
+    figcaption {
+      padding: .75rem 1rem;
+      font-size: .85rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* ===== LISTS ===== */
+    .styled-list {
+      list-style: none;
+      padding: 0;
+    }
+    .styled-list li {
+      padding: .65rem 1rem;
+      border-left: 3px solid var(--primary);
+      margin-bottom: .5rem;
+      background: var(--card-bg);
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ===== BLOCKQUOTE ===== */
+    blockquote {
+      border-left: 4px solid var(--accent);
+      background: #fffbeb;
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-style: italic;
+      color: #78350f;
+      margin: 1.5rem 0;
+    }
+    blockquote cite {
+      display: block;
+      margin-top: .5rem;
+      font-style: normal;
+      font-weight: 600;
+      font-size: .85rem;
+    }
+
+    /* ===== CODE ===== */
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1.25rem;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+    code.inline {
+      background: #e0e7ff;
+      color: var(--primary-dark);
+      padding: .15rem .4rem;
+      border-radius: 4px;
+      font-size: .9em;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1e293b;
+      color: #94a3b8;
+      margin-top: 4rem;
+      padding: 3rem 2rem 1.5rem;
+    }
+    footer .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    footer h4 { color: #fff; margin-bottom: .75rem; }
+    footer ul { list-style: none; padding: 0; }
+    footer ul li { margin-bottom: .35rem; }
+    footer ul a { color: #94a3b8; text-decoration: none; }
+    footer ul a:hover { color: #fff; }
+    footer .copy {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #334155;
+      font-size: .85rem;
+    }
+
+    /* ===== UTILITY ===== */
+    .flex { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .mt-1 { margin-top: 1rem; }
+    .mt-2 { margin-top: 2rem; }
+    .text-center { text-align: center; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header>
+    <div class="container">
+      <div class="logo">&#9670; SampleSite</div>
+      <nav>
+        <a href="#cards">Cards</a>
+        <a href="#table">Table</a>
+        <a href="#form">Form</a>
+        <a href="#faq">FAQ</a>
+        <a href="#media">Media</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <div class="hero">
+    <h1>Comprehensive HTML Sample</h1>
+    <p>A single-page showcase of headings, cards, tables, forms, accordions, lists, media, code blocks, progress bars, and more.</p>
+    <a href="#cards" class="btn btn-white">Explore Components &darr;</a>
+  </div>
+
+  <!-- ========== TYPOGRAPHY ========== -->
+  <section>
+    <h2>Typography</h2>
+    <h1>Heading 1 &mdash; The Main Title</h1>
+    <h2>Heading 2 &mdash; Section Title</h2>
+    <h3>Heading 3 &mdash; Subsection</h3>
+    <h4>Heading 4 &mdash; Detail</h4>
+    <h5>Heading 5 &mdash; Minor Detail</h5>
+    <h6>Heading 6 &mdash; Smallest</h6>
+    <p class="mt-1">This is a standard paragraph demonstrating <strong>bold text</strong>, <em>italic text</em>, <u>underlined text</u>, <mark>highlighted text</mark>, <del>deleted text</del>, <ins>inserted text</ins>, and <code class="inline">inline code</code>. You can also use <abbr title="HyperText Markup Language">HTML</abbr> abbreviations and <a href="#">hyperlinks</a>.</p>
+
+    <blockquote>
+      "The only way to do great work is to love what you do."
+      <cite>&mdash; Steve Jobs</cite>
+    </blockquote>
+  </section>
+
+  <!-- ========== CARDS ========== -->
+  <section id="cards">
+    <h2>Cards</h2>
+    <div class="card-grid">
+      <div class="card">
+        <img src="https://picsum.photos/seed/card1/400/200" alt="Mountain landscape" />
+        <div class="card-body">
+          <h3>Mountain Escape</h3>
+          <p>Discover breathtaking views and serene trails in the heart of the mountains.</p>
+          <span class="badge badge-success">Active</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://picsum.photos/seed/card2/400/200" alt="City skyline" />
+        <div class="card-body">
+          <h3>City Life</h3>
+          <p>Experience the vibrant energy of urban landscapes and modern architecture.</p>
+          <span class="badge badge-warning">Pending</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://picsum.photos/seed/card3/400/200" alt="Ocean sunset" />
+        <div class="card-body">
+          <h3>Ocean Breeze</h3>
+          <p>Relax by the coast with golden sunsets and the calming sound of waves.</p>
+          <span class="badge badge-danger">Sold Out</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TABLE ========== -->
+  <section id="table">
+    <h2>Data Table</h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Wireless Headphones</td>
+            <td>Electronics</td>
+            <td>&#8377;4,999</td>
+            <td>142</td>
+            <td><span class="badge badge-success">In Stock</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Ergonomic Keyboard</td>
+            <td>Accessories</td>
+            <td>&#8377;3,499</td>
+            <td>58</td>
+            <td><span class="badge badge-success">In Stock</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>4K Monitor 32"</td>
+            <td>Displays</td>
+            <td>&#8377;27,999</td>
+            <td>12</td>
+            <td><span class="badge badge-warning">Low Stock</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Mechanical Mouse</td>
+            <td>Accessories</td>
+            <td>&#8377;1,999</td>
+            <td>0</td>
+            <td><span class="badge badge-danger">Out of Stock</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>USB-C Hub</td>
+            <td>Accessories</td>
+            <td>&#8377;2,299</td>
+            <td>203</td>
+            <td><span class="badge badge-success">In Stock</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ========== FORM ========== -->
+  <section id="form">
+    <h2>Contact Form</h2>
+    <div class="form-card">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" placeholder="John" />
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" placeholder="Doe" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="john@example.com" />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91 98765 43210" />
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <select id="subject">
+          <option value="">Select a topic...</option>
+          <option>General Inquiry</option>
+          <option>Bug Report</option>
+          <option>Feature Request</option>
+          <option>Partnership</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" rows="4" placeholder="Write your message here..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Priority</label>
+        <div class="flex">
+          <label class="checkbox-group"><input type="radio" name="priority" checked /> Low</label>
+          <label class="checkbox-group"><input type="radio" name="priority" /> Medium</label>
+          <label class="checkbox-group"><input type="radio" name="priority" /> High</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="checkbox-group">
+          <input type="checkbox" /> I agree to the Terms &amp; Conditions
+        </label>
+      </div>
+      <button class="btn btn-primary" onclick="alert('Form submitted!')">Send Message</button>
+    </div>
+  </section>
+
+  <!-- ========== PROGRESS BARS ========== -->
+  <section>
+    <h2>Progress Bars</h2>
+    <p><strong>HTML</strong> &mdash; 95%</p>
+    <div class="progress-bar"><div class="fill fill-blue" style="width:95%"></div></div>
+    <p><strong>CSS</strong> &mdash; 88%</p>
+    <div class="progress-bar"><div class="fill fill-green" style="width:88%"></div></div>
+    <p><strong>JavaScript</strong> &mdash; 72%</p>
+    <div class="progress-bar"><div class="fill fill-amber" style="width:72%"></div></div>
+    <p><strong>Python</strong> &mdash; 60%</p>
+    <div class="progress-bar"><div class="fill fill-red" style="width:60%"></div></div>
+  </section>
+
+  <!-- ========== ACCORDION / FAQ ========== -->
+  <section id="faq">
+    <h2>FAQ (Accordion)</h2>
+    <details open>
+      <summary>What is HTML?</summary>
+      <div class="content">HTML (HyperText Markup Language) is the standard language used to create and structure content on the web. It uses a system of tags and attributes to define elements like headings, paragraphs, images, links, and more.</div>
+    </details>
+    <details>
+      <summary>What is CSS?</summary>
+      <div class="content">CSS (Cascading Style Sheets) is a stylesheet language that describes how HTML elements should be displayed. It controls layout, colors, fonts, spacing, and responsiveness of web pages.</div>
+    </details>
+    <details>
+      <summary>What is JavaScript?</summary>
+      <div class="content">JavaScript is a dynamic programming language that adds interactivity to websites. It can manipulate the DOM, handle events, communicate with servers, and power modern web applications.</div>
+    </details>
+    <details>
+      <summary>What is responsive design?</summary>
+      <div class="content">Responsive design is an approach that ensures web pages render well on all devices and screen sizes. It uses flexible grids, CSS media queries, and fluid images to adapt layouts dynamically.</div>
+    </details>
+  </section>
+
+  <!-- ========== LISTS ========== -->
+  <section>
+    <h2>Styled Lists</h2>
+    <div class="card-grid">
+      <div>
+        <h3>Ordered List</h3>
+        <ol class="mt-1" style="padding-left:1.25rem;">
+          <li>Plan the project scope</li>
+          <li>Design wireframes &amp; mockups</li>
+          <li>Develop the front-end</li>
+          <li>Build the back-end API</li>
+          <li>Test &amp; deploy</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Unordered List</h3>
+        <ul class="styled-list mt-1">
+          <li>Semantic HTML structure</li>
+          <li>CSS Grid &amp; Flexbox layout</li>
+          <li>Accessible form elements</li>
+          <li>Progressive enhancement</li>
+          <li>Performance optimization</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Definition List</h3>
+        <dl class="mt-1">
+          <dt><strong>API</strong></dt>
+          <dd style="margin-left:1rem;color:var(--text-muted);">Application Programming Interface</dd>
+          <dt class="mt-1"><strong>DOM</strong></dt>
+          <dd style="margin-left:1rem;color:var(--text-muted);">Document Object Model</dd>
+          <dt class="mt-1"><strong>REST</strong></dt>
+          <dd style="margin-left:1rem;color:var(--text-muted);">Representational State Transfer</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CODE BLOCK ========== -->
+  <section>
+    <h2>Code Block</h2>
+    <pre><code>&lt;!-- A simple JavaScript greeting --&gt;
+&lt;script&gt;
+  function greet(name) {
+    const time = new Date().getHours();
+    let greeting;
+
+    if (time &lt; 12) {
+      greeting = "Good morning";
+    } else if (time &lt; 18) {
+      greeting = "Good afternoon";
+    } else {
+      greeting = "Good evening";
+    }
+
+    return `${greeting}, ${name}!`;
+  }
+
+  console.log(greet("Piyush"));
+&lt;/script&gt;</code></pre>
+  </section>
+
+  <!-- ========== MEDIA ========== -->
+  <section id="media">
+    <h2>Media Elements</h2>
+    <div class="card-grid">
+      <figure>
+        <img src="https://picsum.photos/seed/figure1/500/300" alt="Sample photo" />
+        <figcaption>Figure 1 &mdash; A beautiful landscape captured at dawn.</figcaption>
+      </figure>
+      <div>
+        <h3>Embedded Video</h3>
+        <div class="mt-1" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius);">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+            allowfullscreen
+            title="Sample Video">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="mt-2">Audio Player</h3>
+    <audio controls style="width:100%;max-width:500px;margin-top:.75rem;">
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </section>
+
+  <!-- ========== SEMANTIC ELEMENTS ========== -->
+  <section>
+    <h2>Semantic &amp; Misc Elements</h2>
+    <article style="background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;">
+      <header>
+        <h3>Article: The Future of the Web</h3>
+        <p style="color:var(--text-muted);font-size:.85rem;">Published on <time datetime="2026-03-23">March 23, 2026</time> by <strong>SampleSite Team</strong></p>
+      </header>
+      <p class="mt-1">The web continues to evolve with new standards like Web Components, container queries, and the View Transitions API, making it easier than ever to build rich, performant user interfaces.</p>
+      <footer class="mt-1" style="font-size:.85rem;color:var(--text-muted);">
+        Tags: <code class="inline">html</code> <code class="inline">css</code> <code class="inline">javascript</code>
+      </footer>
+    </article>
+
+    <aside style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--radius);padding:1rem 1.25rem;">
+      <strong>&#128161; Tip:</strong> Use semantic elements like <code class="inline">&lt;article&gt;</code>, <code class="inline">&lt;section&gt;</code>, <code class="inline">&lt;aside&gt;</code>, and <code class="inline">&lt;nav&gt;</code> to improve accessibility and SEO.
+    </aside>
+
+    <div class="mt-2">
+      <h3>Meter &amp; Progress</h3>
+      <p class="mt-1">Disk usage: <meter min="0" max="100" value="68" low="30" high="80" optimum="50">68%</meter> 68%</p>
+      <p class="mt-1">Upload progress: <progress max="100" value="45"></progress> 45%</p>
+    </div>
+
+    <div class="mt-2">
+      <h3>Dialog (Modal)</h3>
+      <button class="btn btn-outline" onclick="document.getElementById('myDialog').showModal()">Open Dialog</button>
+      <dialog id="myDialog" style="border:1px solid var(--border);border-radius:var(--radius);padding:2rem;max-width:400px;">
+        <h3>Dialog Box</h3>
+        <p class="mt-1" style="color:var(--text-muted);">This is a native HTML <code class="inline">&lt;dialog&gt;</code> element. It can be used for modals, alerts, and confirmations.</p>
+        <div class="mt-2 text-center">
+          <button class="btn btn-primary" onclick="document.getElementById('myDialog').close()">Close</button>
+        </div>
+      </dialog>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>&#9670; SampleSite</h4>
+        <p>A comprehensive HTML sample page demonstrating modern web elements, layout techniques, and semantic markup.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#cards">Cards</a></li>
+          <li><a href="#table">Table</a></li>
+          <li><a href="#form">Form</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#media">Media</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://developer.mozilla.org">MDN Web Docs</a></li>
+          <li><a href="https://web.dev">web.dev</a></li>
+          <li><a href="https://css-tricks.com">CSS-Tricks</a></li>
+          <li><a href="https://caniuse.com">Can I Use</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>&#9993; hello@samplesite.dev</li>
+          <li>&#9742; +91 98765 43210</li>
+          <li>&#9873; Varanasi, India</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">&copy; 2026 SampleSite. All rights reserved. Built with pure HTML &amp; CSS.</div>
+  </footer>
+
+</body>
+</html>
